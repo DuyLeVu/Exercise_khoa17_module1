@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+</head>
+<body>
+<script>
+    class Apple {
+        weight;
+
+        constructor() {
+            this.weight = 10;
+        }
+
+        isEmpty() {
+            return  this.weight = 0;
+        }
+    }
+
+    class Human {
+        name;
+        gender;
+        weight;
+        setName() {
+            this.name = prompt("Enter Human's name:");
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        setGender() {
+            this.gender = prompt("Human's Gender: ");
+        }
+
+        isMale() {
+            if (this.gender === 'Male') return true;
+            else return false;
+        }
+
+        setWeight() {
+            this.weight = parseFloat(prompt("Enter Human's Weight: "));
+        }
+
+        getWeight() {
+            return this.weight;
+        }
+
+        say(string) {
+            alert(string);
+        }
+
+        check(apple) {
+            if (apple.weight === 0) return true
+                else return false;
+        }
+
+        eat(apple) {
+                this.weight += 1;
+                apple.weight -= 1;
+
+        }
+    }
+
+    let adam = new Human();
+    adam.setName();
+    adam.setWeight();
+    adam.setGender();
+    let name = adam.getName();
+    console.log(name);
+    let eva = new Human();
+    eva.setName();
+    eva.setWeight();
+    eva.setGender()
+    let apple = new Apple();
+    while (adam.check(apple) === false){
+        adam.eat(apple);
+        eva.eat(apple);
+    }
+    console.log(adam.getWeight());
+    console.log(eva.getWeight());
+    console.log(apple.weight);
+</script>
+</body>
+</html>

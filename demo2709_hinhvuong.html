@@ -5,17 +5,25 @@
     <title>Exercise</title>
 </head>
 <body>
-<canvas id="myCanvas" height="768" width="1368" style="border: 1px solid #d3d3d3"></canvas>
+<canvas id="myCanvas" height="500" width="200" style="border: 1px solid #d3d3d3"></canvas>
+<!--<button onclick="moveSquare()">Ấn đi nào!</button>-->
 <script>
     let ctx = document.getElementById('myCanvas').getContext("2d");
     class Square {
         x;
         y;
         length;
-        constructor(length) {
-            this.x = Math.random() * window.innerWidth;
-            this.y = Math.random() * window.innerHeight;
+        speedX;
+        speedY;
+        constructor(x, y, length, color, speedX, speedY) {
+            // this.x = Math.random() * window.innerWidth;
+            // this.y = Math.random() * window.innerHeight;
+            this.x =x;
+            this.y = y;
             this.length = length;
+            this.color = color;
+            this.speedX = speedX;
+            this.speedY = speedY;
         }
         calPerimeter(){
             return (this.length *2)
@@ -35,18 +43,43 @@
         drawSquare(ctx){
             ctx.beginPath();
             ctx.rect(this.x, this.y ,this.length,this.length);
-            ctx.fillStyle = this.getRandomColor();
+            ctx.fillStyle = this.color;
             ctx.fill();
             ctx.closePath();
         }
         changeLength(newLength){
             this.length= newLength;
         }
+        moveLeft(){
+            this.x += this.speedX;
+        }
+        moveDown(){
+            this.y += this.speedY;
+            this.check();
+        }
+        check(){
+            if (this.y<0 || this.y > 500-20){
+                this.speedY = - this.speedY;
+            }
+            if (this.x<0 || this.x > 200-20){
+                this.speedX = - this.speedX;
+            }
+        }
     }
-    for (i=0; i<10; i++){
-        let square = new Square(50);
-        square.drawSquare(ctx);
+    let sq = new Square(50,50,20,'red',5,5);
+
+    function moveSquare(){
+        ctx.clearRect(0, 0, 200, 500);
+        sq.moveDown();
+        sq.moveLeft();
+        sq.drawSquare(ctx);
+       requestAnimationFrame(moveSquare);
     }
+    moveSquare();
+    // for (i=0; i<10; i++){
+    //     let square = new Square(50);
+    //     square.drawSquare(ctx);
+    // }
     // let newSquare = new Square(50,50,300);
     // console.log(newSquare.calPerimeter());
     // console.log(newSquare.calAcreage());
