@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+</head>
+<body>
+<canvas id="myCanvas" height="768" width="1368" style="border: 1px solid #d3d3d3"></canvas>
+<script>
+    let ctx = document.getElementById('myCanvas').getContext("2d");
+    class Square {
+        x;
+        y;
+        length;
+        constructor(length) {
+            this.x = Math.random() * window.innerWidth;
+            this.y = Math.random() * window.innerHeight;
+            this.length = length;
+        }
+        calPerimeter(){
+            return (this.length *2)
+        }
+        calAcreage(){
+            return (this.length ** 2)
+        }
+        getRandomHex(){
+            return Math.floor(Math.random()*255);
+        }
+        getRandomColor(){
+            let red = this.getRandomHex();
+            let green = this.getRandomHex();
+            let blue = this.getRandomHex();
+            return "rgb(" + red + "," + blue + "," + green + ")";
+        }
+        drawSquare(ctx){
+            ctx.beginPath();
+            ctx.rect(this.x, this.y ,this.length,this.length);
+            ctx.fillStyle = this.getRandomColor();
+            ctx.fill();
+            ctx.closePath();
+        }
+        changeLength(newLength){
+            this.length= newLength;
+        }
+    }
+    for (i=0; i<10; i++){
+        let square = new Square(50);
+        square.drawSquare(ctx);
+    }
+    // let newSquare = new Square(50,50,300);
+    // console.log(newSquare.calPerimeter());
+    // console.log(newSquare.calAcreage());
+    // newSquare.drawSquare(ctx);
+</script>
+</body>
+</html>
