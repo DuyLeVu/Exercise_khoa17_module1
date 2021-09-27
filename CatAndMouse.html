@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+</head>
+<body>
+<script>
+    class Cat{
+        name;
+        weight;
+        speed;
+        constructor(name,weight,speed) {
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+        }
+        souding(){
+            alert('meo meo');
+        }
+        catch(mouse){
+            if (this.speed > mouse.speed) return true;
+            else return false;
+        }
+        eat(mouse){
+            if (this.catch(mouse) === true && mouse.isLive() === true) {
+                this.weight += mouse.weight;
+                mouse.weight -= mouse.weight;
+            }
+            else alert("Cat's Speed slower Mouse's Speed");
+        }
+    }
+    class Rat{
+        name;
+        weight;
+        speed;
+        constructor(name, weight, speed) {
+            this.name = name;
+            this.weight = weight;
+            this.speed = speed;
+        }
+        isLive(){
+            if (this.weight == 0) return false
+            else
+            return true;
+        }
+    }
+    let cat = new Cat('Tom',20,5);
+    let mouse = new Rat('Jerry',15,3);
+    cat.eat(mouse);
+    if (mouse.isLive() === false) console.log('Mouse died');
+</script>
+</body>
+</html>
