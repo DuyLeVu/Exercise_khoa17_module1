@@ -1,6 +1,6 @@
-
 let switchButton = new SwitchButton();
-switchButton.connectToLamp(ElectricLamp);
+let lamp = new ElectricLamp();
+switchButton.connectToLamp(lamp);
 for (i = 0; i<10; i++){
     switchButton.switchButton();
 }

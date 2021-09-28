@@ -1,8 +1,8 @@
 class SwitchButton {
     status;
     lamp;
-    connectToLamp(ElectricLamp) {
-        this.lamp = new ElectricLamp;
+    connectToLamp(lamp) {
+        this.lamp = lamp;
     }
     switchOff() {
         this.lamp.turnOff();
