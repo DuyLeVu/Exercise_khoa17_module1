@@ -1,8 +1,11 @@
 class Remote{
     id
     tv
-    connectToTv(Television){
-        this.tv = new Television();
+    constructor(id) {
+        this.id = id;
+    }
+    connectToTv(television){
+        this.tv = television;
     }
     turnOn(){
         this.tv.status = true;
@@ -10,14 +13,22 @@ class Remote{
     turnOff(){
         this.tv.status = false;
     }
-    moveChannel(){
-        let newChannel = parseInt(prompt('Enter new channel: '));
-        this.tv.channel = newChannel;
+    moveChannel(numberChannel){
+        if (this.tv.status == true){
+        this.tv.channel = numberChannel;
+        }
+        else console.log('Tv is off');
     }
-    upVolume() {
-        this.tv.volume += 2;
+    upVolume(number) {
+        if (this.tv.status == true) {
+            this.tv.volume += number;
+        }
+        else console.log('Tv is off');
     }
-    downVolume() {
-        this.tv.volume -= 2;
+    downVolume(number) {
+        if (this.tv.status == true) {
+            this.tv.volume -= number;
+        }
+        else console.log('Tv is off');
     }
 }
